@@ -6,7 +6,5 @@ console.log("Arrancando servidor...")
 //-- se imprime un mensaje en la consola
 http.createServer((req, res) => {
   console.log("---> Peticion recibida")
-  //para acceder a la cabecera:
-  console.log("HOST: " + req.headers.host)
-  console.log("USER AGENT: " + req.headers['user-agent'])
+  console.log("Recurso solicitado (URL): " + req.url)
 }).listen(8080);
