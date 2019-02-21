@@ -6,7 +6,7 @@ console.log("Arrancando servidor...")
 //-- se imprime un mensaje en la consola
 http.createServer((req, res) => {
   console.log("---> Peticion recibida")
-  console.log("--> Cabecera de la solicitud: ")
-  //-- Es un objeto. Esto imprimirá todas sus propiedades
-  console.log(req.headers)
+  //para acceder a la cabecera:
+  console.log("HOST: " + req.headers.host)
+  console.log("USER AGENT: " + req.headers['user-agent'])
 }).listen(8080);
