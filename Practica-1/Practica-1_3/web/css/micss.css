@@ -2,6 +2,34 @@ body {
   background-color: black;
 }
 
-p {
-  color: green;
+h2 {
+  color: ;
+}
+
+#principal{
+  width: 900px;
+  height: 1000px;
+  border: 1px solid #111;
+  float: center;
+  margin: auto;
+}
+#principal_nike{
+  width: 900px;
+  height: 1000px;
+  border: 1px solid #111;
+  float: center;
+  margin: auto;
+  background-image: url("fondonike.jpeg");
+}
+
+header{
+  width: 900px;
+  height: 100px;
+  border: 1px solid #000;
+  background-color: white;
+}
+
+#marcas{
+  margin-top: 50px;
+  border: 1px solid #fff;
 }
