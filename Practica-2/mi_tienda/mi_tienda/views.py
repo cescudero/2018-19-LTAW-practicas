@@ -3,9 +3,8 @@ from django.template.loader import get_template
 from django.template import Template, Context
 
 def index(request):
-
-    t = get_template('main.html'
-    c = Context({'user': 'cescuder'})
+    t = get_template('main.html')
+    c = {'user': 'cescuder'}
     html = t.render(c)
     return HttpResponse(html)
 
