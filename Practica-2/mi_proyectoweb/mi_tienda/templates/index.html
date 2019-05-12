@@ -6,9 +6,15 @@
     <meta charset="utf-8">
     <title>MI TIENDA</title>
     <link rel="stylesheet" href="{% static 'mi-css.css'%}">
+      <script src="{% static 'mi-js.js' %}"></script>
   </head>
-  <body>
-    <p>BIENVENIDO A MI TIENDA con estilo</p>
-    <img src="/static/logonike.png" alt="NOPE">
+  <body onload="main();">
+    <p>BIENVENIDO A MI TIENDA con estilo y js</p>
+    <center>
+    <button class ="button" type="button" onclick="window.location.href='/Nike'">  <img src="{% static 'logonike.png'%}" alt="Nike" width="400" height="400"></img></button>
+    <button class ="button" type="button" onclick="window.location.href='/Adidas'">  <img src="{% static 'logoadidas.png'%}" alt="Adidas" width="400" height="400"></img></button>
+    <button class ="button" type="button" onclick="window.location.href='/Converse'">  <img src="{% static 'logoconverse.png'%}" alt="Adidas" width="400" height="400"></img></button>
+    </center>
+    <button type="button" id="boton">Click me</button>
   </body>
 </html>

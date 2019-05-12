@@ -14,7 +14,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from . import views
+from mi_tienda import views
+from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', views.home_view),
+    url(r'^Nike', views.Nike),
+    url(r'^Adidas', views.Adidas),
+    url(r'^Converse', views.Converse),
+
 ]

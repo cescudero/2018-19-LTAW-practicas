@@ -1,0 +1,41 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'mi-css.css'%}">
+    <title></title>
+  </head>
+  <body >
+    <div class="header">
+      <h3><center>T  I  E  N  D  A      D  E      Z  A  P  A  T  I  L  L  A  S</center></h3>
+    </div>
+    <div class="menu">
+      <a>Principal</a>
+      <a href="productos.html">Productos</a>
+      <a href="?p=carrito">Carrito</a>
+    </div>
+
+    <div class="cuerpo">
+      <center>
+        <table>
+         {% for objeto in objetos %}
+               <td><img src='{{ objeto.image }}' alt="NOPE" id="logo" width="300" height="300"></td>
+               <tr>
+                 <td><center>{{ objeto.name }}</center></td>
+                 <tr>
+                   <td> <center> {{ objeto.price }} EUROS </center></td>
+                 </tr>
+               </tr>
+         {% endfor %}
+        </table>
+        <button class ="button" type="button" onclick="window.location.href='/Converse'"> </button>
+      </center>
+    </div>
+
+    <div class="footer">
+      copyright AnySlehider &copy; <2018>
+    </div>
+  </body>
+</html>

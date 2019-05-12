@@ -1,11 +1,18 @@
 body {
-  background-color: lightblue;
+  background-color: black;
 }
-
-h2 {
-  color: ;
+td{
+  color:white;
 }
-
+h3 {
+  color:white ;
+}
+p {
+  color:white ;
+}
+title{
+  color: pink;
+}
 #principal{
   width: 900px;
   height: 1000px;
