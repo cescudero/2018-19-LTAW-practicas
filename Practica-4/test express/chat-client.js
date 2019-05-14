@@ -27,14 +27,20 @@ function main() {
   socket.emit('nickname', nickname );
   //-- Cuando se aprieta el botón de enviar...
   send.onclick = () => {
-
+    //socket.emit('nickname', nickname );
     //-- Enviar el mensaje, con el evento "new_message"
-    socket.emit('new_message', ": " + msg.value );
+    socket.emit('new_message', nickname + ": " + msg.value );
 
     //-- Lo notificamos en la consola del navegador
     console.log("Mensaje emitido")
+    msg.value = ""
   }
-
+  socket.on('welcome', welcome => {
+    display.innerHTML += welcome + '<br>'
+  });
+  socket.on('logout', logout => {
+    display.innerHTML += logout + '<br>'
+  });
   //-- Cuando se reciba un mensaje del servidor se muestra
   //-- en el párrafo
   socket.on('new_message', msg => {

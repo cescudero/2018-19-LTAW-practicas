@@ -2,27 +2,30 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var clients = [];
+var clients2 =[];
 var clients_length = 0;
-var nickname;
-
+var actual_nick;
+var  mensaje;
+var nombre;
 //--Servir la pagina principal
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
   console.log("Página principal: /")
 });
-
+  const io = require('socket.io-client');
+  const socket = io('http://localhost:3000');
 //--css
 app.get('/mi-css.css', function(req, res){
   res.sendFile(__dirname + '/mi-css.css');
 });
 //-- Servir el cliente javascript
-app.get('/chat-client.js', function(req, res){
-  res.sendFile(__dirname + '/chat-client.js');
+app.get('/app.js', function(req, res){
+  res.sendFile(__dirname + '/app.js');
   console.log("Fichero js solicituado")
 });
 
 //-- Lanzar el servidor
-http.listen(3050, function(){
+http.listen(3000, function(){
   console.log('listening on *:3000');
   });
 
@@ -35,27 +38,22 @@ io.on('connection', function(socket){
   clients_length = clients_length + 1;
   socket.on('nickname', nickname => {
 
-    //actual_nick = nickname;
-    clients[clients_length-1] = nickname;
-    //clients += nickname + ',';
+    actual_nick = nickname;
+    clients += nickname + ',';
     console.log(nickname);
     console.log("1 "+clients);
-
-    socket.emit('welcome',"bienvenido al chat " + nickname );
-    socket.broadcast.emit('welcome', nickname + " se ha unido al chat")
+    //console.log(actual_nick);
+    //nombre = clients.split(",")[0]
+    //clients2 += nombre;
+    //console.log(nombre);
+    //console.log(clients2);
+  //  console.log(clients);
     io.emit('clients', clients)
     //-- Detectar si el usuario se ha desconectado
     socket.on('disconnect', function(){
       clients_length = clients_length - 1;
-      for (var i = 0; i < clients.length; i++) {
-        if (clients[i]==nickname) {
-          clients.pop(i);
-        }
-      }
-      console.log(clients);
-      //clients -= nickname + ',';
+      clients -= nickname + ',';
       console.log('--> Usuario Desconectado');
-      socket.broadcast.emit('logout',  nickname + " se fue del chat")
       });
     });
     console.log(clients);
@@ -73,11 +71,11 @@ io.on('connection', function(socket){
       socket.emit('new_message', mss);
     }else if (comando == ' /list') {
         console.log("me solicitan /list");
-        var mss = 'SERVER =>usuarios activos '+ clients_length+ ' => '  + clients + '<br>';
+        var mss = 'SERVER =>usuarios activos: ' + clients+ '<br>';
          socket.emit('new_message', mss);
     }else if (comando == ' /hello') {
         console.log("me solicitan /hello ");
-        var mss = 'SERVER => hola amigo mio '+'<br>';
+        var mss = 'SERVER => hello ' + actual_nick + '<br>';
         socket.emit('new_message', mss);
     }else if (comando == ' /date') {
       console.log("me solicitan /date");
@@ -92,7 +90,7 @@ io.on('connection', function(socket){
         socket.emit('new_message', mss);
     }else {
         console.log("entro");
-        var mss =  msg + '<br>';
+        var mss = actual_nick + msg + '<br>';
         io.emit('new_message',  mss);
     }
 
